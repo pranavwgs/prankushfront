@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f8fa;
+  --foreground: #101827;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono,
+    Courier New, monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), "Segoe UI", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+main > * {
+  animation: riseIn 0.5s ease-out both;
+}
+
+main > *:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+main > *:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.marquee-track {
+  animation: marqueeSlide 22s linear infinite;
+}
+
+@keyframes marqueeSlide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.projects-motion-shell {
+  box-shadow: 0 24px 70px -48px rgba(11, 110, 253, 0.55);
+}
+
+.projects-motion-glow {
+  pointer-events: none;
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(2px);
+}
+
+.projects-motion-glow-a {
+  top: -3rem;
+  right: -2.25rem;
+  height: 13rem;
+  width: 13rem;
+  background: radial-gradient(circle, rgba(11, 110, 253, 0.22), rgba(11, 110, 253, 0));
+  animation: projectsOrbitA 8s ease-in-out infinite;
+}
+
+.projects-motion-glow-b {
+  bottom: -2.8rem;
+  left: -2rem;
+  height: 12rem;
+  width: 12rem;
+  background: radial-gradient(circle, rgba(26, 155, 111, 0.2), rgba(26, 155, 111, 0));
+  animation: projectsOrbitB 10s ease-in-out infinite;
+}
+
+.projects-motion-card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 420ms ease;
+  box-shadow: 0 14px 38px -26px rgba(15, 23, 42, 0.35);
+  animation: projectsFloatIn 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.projects-motion-grid .projects-motion-card:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.projects-motion-grid .projects-motion-card:nth-child(3) {
+  animation-delay: 0.14s;
+}
+
+.projects-motion-grid .projects-motion-card:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+.projects-motion-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  border-color: rgba(11, 110, 253, 0.45);
+  box-shadow: 0 28px 64px -40px rgba(11, 110, 253, 0.55);
+}
+
+.projects-motion-image {
+  transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.projects-motion-card:hover .projects-motion-image {
+  transform: scale(1.07);
+}
+
+.projects-motion-shine {
+  pointer-events: none;
+  position: absolute;
+  top: -130%;
+  left: -46%;
+  height: 290%;
+  width: 42%;
+  opacity: 0;
+  background: linear-gradient(110deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.55) 47%, rgba(255, 255, 255, 0) 100%);
+  transform: rotate(14deg);
+  transition: transform 720ms ease, opacity 520ms ease;
+}
+
+.projects-motion-card:hover .projects-motion-shine {
+  opacity: 1;
+  transform: translateX(250%) rotate(14deg);
+}
+
+@keyframes projectsFloatIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes projectsOrbitA {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-12px, 10px, 0);
+  }
+}
+
+@keyframes projectsOrbitB {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(12px, -8px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-motion-glow-a,
+  .projects-motion-glow-b,
+  .projects-motion-card,
+  .projects-motion-image,
+  .projects-motion-shine {
+    animation: none !important;
+    transition: none !important;
+  }
+}
