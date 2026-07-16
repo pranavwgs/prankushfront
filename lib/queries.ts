@@ -91,10 +91,14 @@ export const PROJECT_BY_SLUG_QUERY = `*[_type == "project" && slug.current == $s
   title,
   "slug": slug.current,
   clientName,
+  industry,
   featuredImage,
   gallery,
-  resultSummary,
-  body,
+  overview,
+  challenges,
+  solutions,
+  technologies,
+  results,
   isFeatured,
   seo
 }`
@@ -171,6 +175,12 @@ export const CONTACT_PAGE_QUERY = `{
 }`
 
 export const ABOUT_PAGE_QUERY = `{
+ "aboutPage": *[_type == "aboutPage" && _id == "aboutPage"][0]{
+    headline,
+    intro,
+    content,
+    seo
+  },
   "team": *[_type == "teamMember"] | order(sortOrder asc){
     _id,
     fullName,
