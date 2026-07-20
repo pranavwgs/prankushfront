@@ -33,6 +33,7 @@ type HomepageData = {
 
 export default async function Home() {
   const homepage = await sanityFetch<HomepageData>(HOMEPAGE_QUERY)
+  console.log('homepage', homepage)
   const heroStats =
     homepage?.heroStats?.length
       ? homepage.heroStats
@@ -224,7 +225,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="rounded-3xl border border-slate-200 bg-white px-8 py-10">
+      {/* <section className="rounded-3xl border border-slate-200 bg-white px-8 py-10">
         <h2 className="font-[var(--font-display)] text-3xl text-slate-900">Client Voices</h2>
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {(homepage?.featuredTestimonials || []).map((item) => (
@@ -235,7 +236,7 @@ export default async function Home() {
             </article>
           ))}
         </div>
-      </section>
+      </section> */}
     </div>
   )
 }

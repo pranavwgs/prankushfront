@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import {CmsImage} from '@/components/cms-image'
 
 type LinkItem = {
   label: string
@@ -10,6 +11,10 @@ type SiteHeaderProps = {
   siteTitle?: string
   menuItems?: LinkItem[]
   cta?: LinkItem
+  logo?: {
+    src: string
+    alt: string
+  } 
 }
 
 const fallbackItems: LinkItem[] = [
@@ -20,15 +25,14 @@ const fallbackItems: LinkItem[] = [
   {label: 'Contact', href: '/contact'},
 ]
 
-export function SiteHeader({siteTitle, menuItems, cta}: SiteHeaderProps) {
+export function SiteHeader({siteTitle, menuItems, cta, logo}: SiteHeaderProps) {
   const links = menuItems?.length ? menuItems : fallbackItems
-
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/80 backdrop-blur-xl">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" className="text-lg font-bold tracking-tight text-slate-900">
-          {siteTitle || 'Star Agency'}
-        </Link>
+         
+        <CmsImage image={logo} alt={logo?.alt || 'Logo'} width={150} height={100}  />
+       
 
         <nav className="hidden items-center gap-6 md:flex">
           {links.map((item) => (

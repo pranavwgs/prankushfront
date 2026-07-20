@@ -21,6 +21,10 @@ type SiteChrome = {
     siteTitle?: string
     menuItems?: Array<{label: string; href: string; openInNewTab?: boolean}>
     cta?: {label: string; href: string; openInNewTab?: boolean}
+    logo?: {
+      src: string
+      alt: string
+    }
   }
   footer?: {
     headline?: string
@@ -36,7 +40,7 @@ type SiteChrome = {
 }
 
 export const metadata: Metadata = {
-  title: 'Star Agency',
+  title: 'Prankush Infolab',
   description: 'CMS-powered agency website built with Next.js and Sanity.',
 }
 
@@ -46,7 +50,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const chrome = await sanityFetch<SiteChrome>(SITE_CHROME_QUERY)
-
+console.log(chrome)
   return (
     <html lang="en" className={`${bodyFont.variable} ${displayFont.variable} h-full antialiased`}>
       <body className="min-h-full bg-[#f7f8fa] text-slate-900">
@@ -56,6 +60,7 @@ export default async function RootLayout({
             siteTitle={chrome.navigation?.siteTitle}
             menuItems={chrome.navigation?.menuItems}
             cta={chrome.navigation?.cta}
+            logo={chrome.navigation?.logo}
           />
           <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-10">{children}</main>
           <SiteFooter

@@ -2,6 +2,7 @@ export const SITE_CHROME_QUERY = `{
   "navigation": *[_type == "navigation" && _id == "navigation"][0]{
     siteTitle,
     menuItems,
+    logo,
     cta
   },
   "footer": *[_type == "footer" && _id == "footer"][0]{
@@ -55,7 +56,7 @@ export const HOMEPAGE_QUERY = `*[_type == "homepage" && _id == "homepage"][0]{
   }
 }`
 
-export const SERVICES_QUERY = `*[_type == "service"] | order(name asc){
+export const SERVICES_QUERY = `*[_type == "service"] | order(order asc){
   _id,
   name,
   "slug": slug.current,
@@ -65,7 +66,7 @@ export const SERVICES_QUERY = `*[_type == "service"] | order(name asc){
   isFeatured
 }`
 
-export const SERVICE_BY_SLUG_QUERY = `*[_type == "service" && slug.current == $slug][0]{
+export const SERVICE_BY_SLUG_QUERY = `*[_type == "service" && slug.current == $slug][0]|{
   _id,
   name,
   "slug": slug.current,
